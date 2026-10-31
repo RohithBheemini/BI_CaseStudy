@@ -1,0 +1,189 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "v1000000000000000011",
+  "position": {
+    "x": 760,
+    "y": 192,
+    "z": 4001,
+    "height": 248,
+    "width": 504,
+    "tabOrder": 4001
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Zomato_PowerBI_Predictions"
+                    }
+                  },
+                  "Property": "Delay_Risk"
+                }
+              },
+              "queryRef": "Zomato_PowerBI_Predictions.Delay_Risk",
+              "nativeQueryRef": "Delay_Risk",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Zomato_PowerBI_Predictions"
+                    }
+                  },
+                  "Property": "Total Orders"
+                }
+              },
+              "queryRef": "Zomato_PowerBI_Predictions.Total Orders",
+              "nativeQueryRef": "Total Orders"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Zomato_PowerBI_Predictions"
+                    }
+                  },
+                  "Property": "SLA Compliant Orders"
+                }
+              },
+              "queryRef": "Zomato_PowerBI_Predictions.SLA Compliant Orders",
+              "nativeQueryRef": "SLA Compliant Orders"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Zomato_PowerBI_Predictions"
+                  }
+                },
+                "Property": "Total Orders"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Order Risk Segmentation: Volume by SLA Delay Risk Tier'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fcat_v10000000000",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Zomato_PowerBI_Predictions"
+              }
+            },
+            "Property": "Delay_Risk"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fm0_v10000000000",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Zomato_PowerBI_Predictions"
+              }
+            },
+            "Property": "Total Orders"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fm1_v10000000000",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Zomato_PowerBI_Predictions"
+              }
+            },
+            "Property": "SLA Compliant Orders"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

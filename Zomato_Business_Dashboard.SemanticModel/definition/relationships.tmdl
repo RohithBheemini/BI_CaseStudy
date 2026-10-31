@@ -1,0 +1,5 @@
+relationship 6504eb5b-9bfe-4793-9cd5-1f42b7b77ecb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Zomato_PowerBI_Predictions.Order_Date
+	toColumn: LocalDateTable_9874e0d6-0165-4f06-8ba1-ec1e79b37681.Date
+

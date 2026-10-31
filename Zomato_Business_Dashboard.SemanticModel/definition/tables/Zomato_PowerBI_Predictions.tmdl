@@ -1,0 +1,413 @@
+table Zomato_PowerBI_Predictions
+	lineageTag: 8796f8b1-db64-403e-927e-6e3c65703e2d
+
+	measure 'Total Orders' =
+			
+			COUNTROWS('Zomato_PowerBI_Predictions')
+		formatString: 0
+		lineageTag: 9e0f784b-2349-4dd8-a7a8-6c397bb2948e
+
+	measure 'Avg Actual Delivery' =
+			
+			AVERAGE('Zomato_PowerBI_Predictions'[Actual Delivery(min)])
+		lineageTag: 4da4961b-db05-4a1d-9471-9357a84083f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Predicted Delivery' =
+			
+			AVERAGE('Zomato_PowerBI_Predictions'[Predicted Delivery(min)])
+		lineageTag: ecf6748c-c4bb-4ca5-aff4-deb7b8245cee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Error' =
+			
+			AVERAGE('Zomato_PowerBI_Predictions'[Error])
+		lineageTag: 328aaa54-08b9-43cd-9a4c-97e0415d39b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'High Risk Orders' =
+			
+			CALCULATE(
+			    [Total Orders],
+			    'Zomato_PowerBI_Predictions'[Delay_Risk] = "High"
+			)
+		formatString: 0
+		lineageTag: cc1f52c4-0565-46ab-9834-880dd3e9a0e2
+
+	measure 'High Risk %' =
+			
+			DIVIDE(
+			    [High Risk Orders],
+			    [Total Orders]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 96d8a98e-6be6-4349-b670-ad6739efc207
+
+	measure 'SLA Compliant Orders' =
+			
+			CALCULATE(
+			    [Total Orders],
+			    'Zomato_PowerBI_Predictions'[Actual Delivery(min)] <= 30
+			)
+		formatString: #,0
+		lineageTag: a1f2c3d4-1111-4a2b-8c3d-000000000001
+
+	measure 'SLA Compliance %' =
+			
+			DIVIDE(
+			    [SLA Compliant Orders],
+			    [Total Orders]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a1f2c3d4-1111-4a2b-8c3d-000000000002
+
+	measure 'Avg Pickup Delay' =
+			
+			AVERAGE('Zomato_PowerBI_Predictions'[Pickup Delay(min)])
+		formatString: 0.0
+		lineageTag: a1f2c3d4-1111-4a2b-8c3d-000000000003
+
+	measure 'Avg Transit Time' =
+			
+			AVERAGE('Zomato_PowerBI_Predictions'[Actual Delivery(min)]) - AVERAGE('Zomato_PowerBI_Predictions'[Pickup Delay(min)])
+		formatString: 0.0
+		lineageTag: a1f2c3d4-1111-4a2b-8c3d-000000000004
+
+	measure 'Avg Distance km' =
+			
+			AVERAGE('Zomato_PowerBI_Predictions'[Distance km])
+		formatString: 0.00
+		lineageTag: a1f2c3d4-1111-4a2b-8c3d-000000000005
+
+	measure 'Avg Rider Rating' =
+			
+			AVERAGE('Zomato_PowerBI_Predictions'[Delivery_person_Ratings])
+		formatString: 0.00
+		lineageTag: a1f2c3d4-1111-4a2b-8c3d-000000000006
+
+	measure 'Avg Absolute Error' =
+			
+			AVERAGE('Zomato_PowerBI_Predictions'[Absolute Error(min)])
+		formatString: 0.00
+		lineageTag: a1f2c3d4-1111-4a2b-8c3d-000000000007
+
+	measure 'Active Riders' =
+			
+			DISTINCTCOUNT('Zomato_PowerBI_Predictions'[Delivery_person_ID])
+		formatString: #,0
+		lineageTag: a1f2c3d4-1111-4a2b-8c3d-000000000008
+
+	column ID
+		dataType: string
+		lineageTag: a83fccf9-4286-46b4-9b82-f03881e9911d
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_person_ID
+		dataType: string
+		lineageTag: 89f88a77-7dad-4c15-9234-598c7bd2fb30
+		summarizeBy: none
+		sourceColumn: Delivery_person_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_person_Age
+		dataType: int64
+		formatString: 0
+		lineageTag: b3254711-3c72-4862-88c1-7a1785bdaf20
+		summarizeBy: sum
+		sourceColumn: Delivery_person_Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_person_Ratings
+		dataType: double
+		lineageTag: d8822d17-8538-452c-b493-321103c104ef
+		summarizeBy: sum
+		sourceColumn: Delivery_person_Ratings
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Restaurant_latitude
+		dataType: double
+		lineageTag: e61c5c23-dda5-41fd-81b2-0eaf778bf7f3
+		summarizeBy: sum
+		sourceColumn: Restaurant_latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Restaurant_longitude
+		dataType: double
+		lineageTag: 23672122-d224-49a5-b98f-d3760c6e310c
+		summarizeBy: sum
+		sourceColumn: Restaurant_longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Delivery_location_latitude
+		dataType: double
+		lineageTag: 05f6e064-8361-4218-8596-f56bc7b427a5
+		summarizeBy: sum
+		sourceColumn: Delivery_location_latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Delivery_location_longitude
+		dataType: double
+		lineageTag: 35d36bd6-5a53-41bd-bda5-4301289e6c40
+		summarizeBy: sum
+		sourceColumn: Delivery_location_longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Order_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c4cc1023-d9f4-425f-b308-d0d27b4719e3
+		summarizeBy: none
+		sourceColumn: Order_Date
+
+		variation Variation
+			isDefault
+			relationship: 6504eb5b-9bfe-4793-9cd5-1f42b7b77ecb
+			defaultHierarchy: LocalDateTable_9874e0d6-0165-4f06-8ba1-ec1e79b37681.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Time_Orderd
+		dataType: string
+		lineageTag: 579cd08f-bffc-454e-a6bb-a4f313fca4f1
+		summarizeBy: none
+		sourceColumn: Time_Orderd
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Order_picked
+		dataType: string
+		lineageTag: 3c8ff826-b92c-4c7b-bfcf-a22e18175a8e
+		summarizeBy: none
+		sourceColumn: Time_Order_picked
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weather_conditions
+		dataType: string
+		lineageTag: b6d697b6-54ed-4dde-a179-491f29cd29e2
+		summarizeBy: none
+		sourceColumn: Weather_conditions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Traffic
+		dataType: string
+		lineageTag: 3a5096cf-10ff-4431-8b53-9f10322de768
+		summarizeBy: none
+		sourceColumn: Traffic
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vehicle_condition
+		dataType: int64
+		formatString: 0
+		lineageTag: a9af9ce4-e78d-4294-9947-c2fcd61e26db
+		summarizeBy: sum
+		sourceColumn: Vehicle_condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type_of_order
+		dataType: string
+		lineageTag: f5c0cad8-a8d3-4d1d-92f7-8884e65da812
+		summarizeBy: none
+		sourceColumn: Type_of_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type_of_vehicle
+		dataType: string
+		lineageTag: 2002a622-ba3d-4fb9-be90-254731fb4374
+		summarizeBy: none
+		sourceColumn: Type_of_vehicle
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Multiple Deliveries'
+		dataType: int64
+		formatString: 0
+		lineageTag: f4b70566-553a-4f43-b5ea-f06c59ac061e
+		summarizeBy: sum
+		sourceColumn: Multiple Deliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	column Festival
+		dataType: string
+		lineageTag: 03d4cb82-74b3-42e5-b9bf-1410a75bfb54
+		summarizeBy: none
+		sourceColumn: Festival
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 0f75dd04-fd0b-4fc5-b329-2c6589f73bd6
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Time_taken (min)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f830d1bd-e31d-472d-b861-793c8782225d
+		summarizeBy: sum
+		sourceColumn: Time_taken (min)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 92875a3c-49d0-4c9e-a2bc-0615a3c486e3
+		summarizeBy: sum
+		sourceColumn: Order_Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 818ccce3-1d70-4afd-adc2-1adb96c95a81
+		summarizeBy: sum
+		sourceColumn: Order_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_DayOfWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 325d7ba2-55b4-4951-ace1-06364c072448
+		summarizeBy: sum
+		sourceColumn: Order_DayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Time
+		dataType: double
+		lineageTag: 2b47ed05-1304-4eb8-a5ec-e90502391295
+		summarizeBy: sum
+		sourceColumn: Order_Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pickup_Time
+		dataType: double
+		lineageTag: 1519f623-8d06-499e-a781-6e38cec9e374
+		summarizeBy: sum
+		sourceColumn: Pickup_Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Pickup Delay(min)'
+		dataType: double
+		lineageTag: f2319ff2-0bd2-4994-937f-3a46929f5fab
+		summarizeBy: sum
+		sourceColumn: Pickup Delay(min)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Distance km'
+		dataType: double
+		lineageTag: 09cdcdec-98f4-4c54-a507-7414bd955942
+		summarizeBy: sum
+		sourceColumn: Distance km
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Actual Delivery(min)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c9f1889-9376-4ceb-944d-f0d74b0a575f
+		summarizeBy: sum
+		sourceColumn: Actual Delivery(min)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predicted Delivery(min)'
+		dataType: double
+		lineageTag: 68c3d7f0-1681-4d32-95b7-1afc0b5ce9af
+		summarizeBy: sum
+		sourceColumn: Predicted Delivery(min)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Error
+		dataType: double
+		lineageTag: fadfb52c-1fba-4b2e-8f11-34fdb7daf9e0
+		summarizeBy: sum
+		sourceColumn: Error
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Absolute Error(min)'
+		dataType: double
+		lineageTag: 67220474-7460-4b78-98a4-f33a34e0d60f
+		summarizeBy: sum
+		sourceColumn: Absolute Error(min)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Delay_Risk
+		dataType: string
+		lineageTag: 783b49d2-2c17-4a37-a2e3-7b23c5c5911d
+		summarizeBy: none
+		sourceColumn: Delay_Risk
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Zomato_PowerBI_Predictions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Rohith\Downloads\BI CaseStudy\zomato_delivery_cleaned.csv"),[Delimiter=",", Columns=32, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ID", type text}, {"Delivery_person_ID", type text}, {"Delivery_person_Age", Int64.Type}, {"Delivery_person_Ratings", type number}, {"Restaurant_latitude", type number}, {"Restaurant_longitude", type number}, {"Delivery_location_latitude", type number}, {"Delivery_location_longitude", type number}, {"Order_Date", type date}, {"Time_Orderd", type text}, {"Time_Order_picked", type text}, {"Weather_conditions", type text}, {"Road_traffic_density", type text}, {"Vehicle_condition", Int64.Type}, {"Type_of_order", type text}, {"Type_of_vehicle", type text}, {"multiple_deliveries", Int64.Type}, {"Festival", type text}, {"City", type text}, {"Time_taken (min)", Int64.Type}, {"Order_Day", Int64.Type}, {"Order_Month", Int64.Type}, {"Order_DayOfWeek", Int64.Type}, {"Order_Time", type number}, {"Pickup_Time", type number}, {"Pickup_Delay", type number}, {"Distance_km", type number}, {"Actual_Time", Int64.Type}, {"Predicted_Time", type number}, {"Error", type number}, {"Absolute_Error", type number}, {"Delay_Risk", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Actual_Time", "Actual Delivery(min)"}, {"Predicted_Time", "Predicted Delivery(min)"}, {"Distance_km", "Distance km"}, {"Pickup_Delay", "Pickup Delay(min)"}, {"Absolute_Error", "Absolute Error(min)"}, {"Road_traffic_density", "Traffic"}, {"multiple_deliveries", "Multiple Deliveries"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

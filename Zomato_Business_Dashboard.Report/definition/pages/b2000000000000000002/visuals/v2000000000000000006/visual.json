@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "v2000000000000000006",
+  "position": {
+    "x": 1026,
+    "y": 68,
+    "z": 2004,
+    "height": 112,
+    "width": 238,
+    "tabOrder": 2004
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Zomato_PowerBI_Predictions"
+                    }
+                  },
+                  "Property": "Avg Rider Rating"
+                }
+              },
+              "queryRef": "Zomato_PowerBI_Predictions.Avg Rider Rating",
+              "nativeQueryRef": "Avg Rider Rating"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Zomato_PowerBI_Predictions"
+                  }
+                },
+                "Property": "Avg Rider Rating"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f2000000000000000006",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Zomato_PowerBI_Predictions"
+              }
+            },
+            "Property": "Avg Rider Rating"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

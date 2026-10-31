@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "v1000000000000000005",
+  "position": {
+    "x": 773.5,
+    "y": 68,
+    "z": 2003,
+    "height": 112,
+    "width": 238,
+    "tabOrder": 2003
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Zomato_PowerBI_Predictions"
+                    }
+                  },
+                  "Property": "Avg Actual Delivery"
+                }
+              },
+              "queryRef": "Zomato_PowerBI_Predictions.Avg Actual Delivery",
+              "nativeQueryRef": "Avg Actual Delivery"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Zomato_PowerBI_Predictions"
+                  }
+                },
+                "Property": "Avg Actual Delivery"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f1000000000000000005",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Zomato_PowerBI_Predictions"
+              }
+            },
+            "Property": "Avg Actual Delivery"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

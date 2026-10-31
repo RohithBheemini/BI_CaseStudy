@@ -1,0 +1,189 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "v1000000000000000012",
+  "position": {
+    "x": 240,
+    "y": 456,
+    "z": 4002,
+    "height": 250,
+    "width": 504,
+    "tabOrder": 4002
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Zomato_PowerBI_Predictions"
+                    }
+                  },
+                  "Property": "Weather_conditions"
+                }
+              },
+              "queryRef": "Zomato_PowerBI_Predictions.Weather_conditions",
+              "nativeQueryRef": "Weather_conditions",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Zomato_PowerBI_Predictions"
+                    }
+                  },
+                  "Property": "Avg Actual Delivery"
+                }
+              },
+              "queryRef": "Zomato_PowerBI_Predictions.Avg Actual Delivery",
+              "nativeQueryRef": "Avg Actual Delivery"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Zomato_PowerBI_Predictions"
+                    }
+                  },
+                  "Property": "Avg Predicted Delivery"
+                }
+              },
+              "queryRef": "Zomato_PowerBI_Predictions.Avg Predicted Delivery",
+              "nativeQueryRef": "Avg Predicted Delivery"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Zomato_PowerBI_Predictions"
+                  }
+                },
+                "Property": "Avg Actual Delivery"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Weather Conditions Impact on Actual vs Expected Delivery Time'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fcat_v10000000000",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Zomato_PowerBI_Predictions"
+              }
+            },
+            "Property": "Weather_conditions"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fm0_v10000000000",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Zomato_PowerBI_Predictions"
+              }
+            },
+            "Property": "Avg Actual Delivery"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fm1_v10000000000",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Zomato_PowerBI_Predictions"
+              }
+            },
+            "Property": "Avg Predicted Delivery"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

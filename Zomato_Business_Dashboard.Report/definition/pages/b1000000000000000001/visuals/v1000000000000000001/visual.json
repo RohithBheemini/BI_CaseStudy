@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "v1000000000000000001",
+  "position": {
+    "x": 16,
+    "y": 10,
+    "z": 1000,
+    "height": 48,
+    "width": 1248,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "ZOMATO DELIVERY OPERATIONS — EXECUTIVE SLA & BUSINESS OUTCOMES",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "18pt",
+                      "color": "#FFFFFF"
+                    }
+                  },
+                  {
+                    "value": "   |   Cleaned Dataset (45,584 Orders)  •  Target SLA: <= 30 Mins  •  Predictive Delay Risk Monitoring",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#D2D0CE"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

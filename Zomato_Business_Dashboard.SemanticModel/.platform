@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Zomato_Business_Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e2c0a335-4c11-4478-bed4-e6ffb3271941"
+  }
+}
